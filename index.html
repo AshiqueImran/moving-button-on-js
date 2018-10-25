@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Button transition</title>
+	<style type="text/css">
+		.main{
+		    background-color:lightgray;
+		    height:1500px;
+		}
+		.btn-many{
+			top: 50%;
+			left: 50%;
+			position: fixed;
+			transform: translate(-50%,-50%);
+		}
+
+	</style>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+	<div class="content">
+		<div class="main">
+			<button class="btn btn-primary btn-many btn-lg" id="mainButtonId">click me! <i class="fa fa-credit-card"></i></button>
+
+		</div>
+	</div>
+	
+</body>
+
+<script type="text/javascript">
+	var scrollAmount = 0;
+	var pixelsToNotify = 200;
+	var increased=true;
+	// $("#mainButtonId").hide();
+
+	$(document).scroll(function() {
+	  var distance = $(window).scrollTop();
+	    console.log(distance, scrollAmount);
+	    if(distance  > pixelsToNotify && increased){
+	        
+        	$("#mainButtonId").animate({
+        	    left: '-=46%',
+        	    width: '5%',
+        	    opacity: 0.65
+        	},"slow");
+
+        	$("#mainButtonId").html('<i class="fa fa-credit-card"></i>');
+        	increased=false;
+
+
+	        scrollAmount = distance;
+	    }
+	    else if(distance  < pixelsToNotify){
+	    	if(!increased){
+
+	    		$("#mainButtonId").animate({
+	    			left: '+=46%',
+	    			width: '10%',
+	    			opacity: 1
+
+	    		},"slow");
+	    		$("#mainButtonId").html('click me! <i class="fa fa-credit-card"></i>');
+	    		increased=true;
+
+	    	}
+	}
+
+	});
+
+	// $(document).ready(function(){
+	// 	$("#mainButtonId").click(function(){
+	// 		// $("#mainButtonId").show();
+	// 		if(increased){
+	// 			$("#mainButtonId").animate({
+	// 			    left: '+=10%',
+	// 			    width: '+=5%',
+	// 			    opacity: 1
+	// 			},"slow");
+	// 			increased=false;
+	// 		}
+	// 		else{
+	// 			$("#mainButtonId").animate({
+	// 			    left: '-=10%',
+	// 			    width: '-=5%',
+	// 			    opacity: 0.7
+
+	// 			},"slow");
+	// 			increased=true;
+	// 		}
+	// 	});
+	// });
+</script>
+
+</html>
